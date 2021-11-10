@@ -1,0 +1,4 @@
+# Project exclude paths
+/online-site-common/target/
+/online-site-rest/target/
+/online-site-web/target/

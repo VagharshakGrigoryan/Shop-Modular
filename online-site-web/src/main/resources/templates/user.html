@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Products</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+    <link rel="stylesheet" href="vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="vendor/choices.js/public/assets/styles/choices.css">
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+</head>
+<body>
+<header th:insert="bloks/header :: header"></header>
+<div class="container mt-5">
+    <h1>Users</h1>
+    <div th:each="el : ${users}" class="alert alert-info mt-2">
+        <h3 th:text="${el.firstName}"></h3>
+        <p th:text="${el.role}"></p>
+        <a th:href="@{/user/delete(id=${el.id})}" class="btn btn-warning">Delet</a>
+    </div>
+
+    <div class="container mt-5">
+        <style>
+            ul.pagination {
+                display: inline-block;
+                padding: 0;
+                margin: 0;
+            }
+
+            ul.pagination li {
+                display: inline;
+            }
+
+            ul.pagination li a {
+                color: #ffffff;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+        </style>
+        <ul class="pagination" th:if="${users.totalPages > 0}" th:each="pageNumber : ${pageNumbers}">
+
+            <li class="page-item"><a th:href="@{/user(size=${users.size}, page=${pageNumber})}"
+
+                                     th:text="${pageNumber}"
+                                     th:class="${pageNumber==users.number + 1} ? active" class="btn btn-warning"
+                                     style="color: #1f1f1f">
+                1</a></li>
+        </ul>
+
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div th:insert="bloks/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Home</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+<link rel="stylesheet" href="vendor/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" href="vendor/choices.js/public/assets/styles/choices.css">
+<link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+<link rel="stylesheet" href="css/custom.css">
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="img/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="img/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="img/apple-touch-icon-152x152.png">
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	<body>
+
+<header th:insert="bloks/header :: header"></header>
+<!-- HTML GOES HERE -->
+<div class="container my-5">
+	<div class="row">
+		<div class="col-12">
+			<div class="table-responsive"
+				 th:if="${session.cart != null && !session.cart.items.isEmpty()}">
+				<table class="table table-striped">
+					<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">Product</th>
+						<th scope="col">Available</th>
+						<th scope="col" class="text-center">Quantity</th>
+						<th scope="col" class="text-right">Price</th>
+						<th></th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each="item : ${session.cart.items}">
+						<td>
+							<img
+									th:src="@{${item.product.getUrl()}}"  alt="" style="width:130px;height:110px;"/>
+						</td>
+						<td th:text="${item.product.getName()}">Product Name</td>
+						<td>In stock</td>
+						<td th:text="${item.quantity}" class="text-center">Quantity</td>
+						<td
+								th:text="${#numbers.formatCurrency(item.product.getPrice() * item.quantity)}"
+								class="text-right">70 &euro;</td>
+						<td class="text-right">
+							<form method="post"
+								  th:action="@{'cart/remove/' + ${item.product.getName()}}">
+								<button class="btn btn-sm btn-danger">remove</button>
+							</form>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><strong>Total</strong></td>
+						<td
+								th:text="${#numbers.formatCurrency(session.cart.totalPrice)}"
+								class="text-right"><strong>0 &euro;</strong></td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div th:if="${session.cart == null || session.cart.items.isEmpty()}">
+				<h5 class="text-center mb-5">Your cart is empty.</h5>
+			</div>
+		</div>
+		<div class="col mb-2">
+			<div class="row">
+				<div class="col-sm-12  col-md-6">
+					<a class="btn btn-block btn-info" th:href="@{/products}"
+					   role="button">Continue Shopping</a>
+				</div>
+				<div th:if="${session.cart != null && !session.cart.items.isEmpty()}" class="col-sm-12 col-md-6 text-right">
+					<a class="btn btn-lg btn-block btn-success text-uppercase" th:href="@{/order/current}" role="button">Checkout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	</body>
+</html>

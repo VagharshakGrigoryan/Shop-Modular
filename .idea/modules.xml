@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/online-site.iml" filepath="$PROJECT_DIR$/online-site.iml" />
+      <module fileurl="file://$PROJECT_DIR$/online-site-common/online-site-common.iml" filepath="$PROJECT_DIR$/online-site-common/online-site-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/online-site-rest/online-site-rest.iml" filepath="$PROJECT_DIR$/online-site-rest/online-site-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/online-site-web/online-site-web.iml" filepath="$PROJECT_DIR$/online-site-web/online-site-web.iml" />
+    </modules>
+  </component>
+</project>

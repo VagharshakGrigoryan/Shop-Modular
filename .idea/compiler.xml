@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="online-site-common" />
+        <module name="online-site-web" />
+        <module name="online-site-rest" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="online-site" target="11" />
+      <module name="online-site-common" target="11" />
+      <module name="online-site-rest" target="11" />
+      <module name="online-site-web" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="online-site" options="-parameters" />
+      <module name="online-site-common" options="-parameters" />
+      <module name="online-site-rest" options="-parameters" />
+      <module name="online-site-web" options="-parameters" />
+    </option>
+  </component>
+</project>
