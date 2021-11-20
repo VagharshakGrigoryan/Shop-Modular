@@ -27,7 +27,6 @@ public class Category {
     private List<Product> products = new ArrayList<>();
 
     public enum Type {
-        BOOK,CLOTHES, FOR_HOME,SPORT,IT,SCHOOL
+        BOOK,CLOTHES,FOR_HOME,SPORT,IT,SCHOOL
     }
-
 }

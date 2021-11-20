@@ -24,10 +24,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserEndpoint {
 
-    private final UserServiceImpl userService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtTokenUtil jwtTokenUtil;
     private final ModelMapper mapper;
 
 
@@ -40,13 +38,6 @@ public class UserEndpoint {
                     .build();
         }
 
-        User user = byEmail.get();
-        if (passwordEncoder.matches(userAuthDto.getPassword(), user.getPassword())) {
-            return ResponseEntity.ok(UserAuthResponseDto.builder()
-                    .token(jwtTokenUtil.generateToken(user.getEmail()))
-                    .userDto(mapper.map(user, UserDto.class))
-                    .build());
-        }
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
                 .build();
@@ -101,6 +92,7 @@ public class UserEndpoint {
                 .body(mapper.map(userRepository.save(userFromDb), UserDto.class));
     }
 
+    @SuppressWarnings("rawtypes")
     @DeleteMapping("/users/{id}")
     public ResponseEntity deleteById(@PathVariable("id") long id) {
         Optional<User> byId = userRepository.findById(id);

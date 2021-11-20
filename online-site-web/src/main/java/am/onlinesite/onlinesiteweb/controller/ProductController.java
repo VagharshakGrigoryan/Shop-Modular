@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
@@ -62,12 +61,7 @@ public class ProductController {
             @RequestParam(value = "size", defaultValue = "9") int size,
             @RequestParam(value = "orderBy", defaultValue = "title") String orderBy,
             @RequestParam(value = "order", defaultValue = "ASC") String order,
-            ModelMap modelMap, Product product, @AuthenticationPrincipal CurrentUser currentUser) {
-
-        //todo sig nayel karoxa petq e hanel
-        Sort sort = order.equals("ASC") ?
-                Sort.by(Sort.Order.asc(orderBy)) :
-                Sort.by(Sort.Order.desc(orderBy));
+            ModelMap modelMap, @AuthenticationPrincipal CurrentUser currentUser) {
 
         PageRequest pageRequest = PageRequest.of(page - 1, size);
         Page<Product> products = productServiceimpl.productpages(pageRequest);
@@ -166,6 +160,8 @@ public class ProductController {
         Product product = productService.getProduct(productId);
         product.setDescription(formProduct.getDescription());
         product.setUrl(formProduct.getUrl());
+        product.setUrlOne(formProduct.getUrlOne());
+        product.setUrlTwo(formProduct.getUrlTwo());
         product.setPrice(formProduct.getPrice());
         productService.saveProduct(product);
         return String.format("redirect:/products/%d", productId);
@@ -205,7 +201,6 @@ public class ProductController {
         }
     }
 
-
     @PostMapping("/shop/{Id}")
     public String processProducts(@PathVariable Long Id, @ModelAttribute("cart") Cart cart) {
         Optional<Product> product = productServiceimpl.findId(Id);
@@ -213,7 +208,8 @@ public class ProductController {
         if (product.isPresent()) {
             Item item = new Item(product.get());
 
-            cart.getItems().stream()
+            cart.getItems()
+                    .stream()
                     .filter(i -> i.equals(item))
                     .findFirst()
                     .ifPresentOrElse(Item::updateQuantity, () -> {

@@ -161,27 +161,28 @@
                             </ul>
                         </li>
                     </ul>
-                </div>
-                <li class="nav-item dropdown menu-large"><a class="nav-link dropdown-toggle" id="featuresMegamenu"
-                                                            href="#" role="button" data-bs-toggle="dropdown"
-                                                            aria-expanded="false">Categorys</a>
-                    <ul class="dropdown-menu megamenu p-4" aria-labelledby="featuresMegamenu">
-                        <li>
-                            <div class="row">
-                                <div class="col-lg-6"><img class="img-fluid d-none d-lg-block"
-                                                           src="img/template-easy-customize.png" alt=""></div>
-                                <div class="col-lg-3 col-md-6">
-                                    <ul class="list-unstyled mb-3">
-                                        <li><a class="dropdown-item text-uppercase border-bottom"
-                                               th:href="@{/allCategories}">
-                                            Categorys</a></li>
-                                    </ul>
+
+
+                    <div class="nav-item dropdown menu-large"><a class="nav-link dropdown-toggle" id="featuresMegamenu"
+                                                                href="#" role="button" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">Categorys</a>
+                        <ul class="dropdown-menu megamenu p-4" aria-labelledby="featuresMegamenu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-6"><img class="img-fluid d-none d-lg-block"
+                                                               src="img/template-easy-customize.png" alt=""></div>
+                                    <div class="col-lg-3 col-md-6">
+                                        <ul class="list-unstyled mb-3">
+                                            <li><a class="dropdown-item text-uppercase border-bottom"
+                                                   th:href="@{/allCategories}">
+                                                Categorys</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" id="contactMegamenu"
+                            </li>
+                        </ul>
+                    </div>
+                <div class="nav-item dropdown"><a class="nav-link dropdown-toggle active" id="contactMegamenu"
                                                  href="#" role="button" data-bs-toggle="dropdown"
                                                  aria-expanded="false" sec:authorize="hasAnyAuthority('ADMIN')">ADMIN PANEL</a>
                     <ul class="dropdown-menu" aria-labelledby="hpDropdown">
@@ -189,8 +190,7 @@
                         </li>
                         <li><a class="dropdown-item text-uppercase border-bottom" th:href="@{/user}">Users</a></li>
                     </ul>
-                </li>
-                </ul>
+                </div>
                 <th:block th:fragment="assets">
                     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
                             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -206,7 +206,7 @@
                 </th:block>
             </div>
         </div>
-    </header>
+        </div></header>
 
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="vendor/waypoints/lib/noframework.waypoints.js"></script>

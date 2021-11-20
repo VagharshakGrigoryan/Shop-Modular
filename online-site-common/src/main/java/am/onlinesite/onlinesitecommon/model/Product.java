@@ -24,6 +24,8 @@ public class Product {
     @Size(min = 5, message = "Description should be 5 characters long")
     private String description;
     private String url;
+    private String urlOne;
+    private String urlTwo;
     @Column(name = "quantity", nullable = false)
     @Min(value = 0, message = "*Quantity has to be non negative number")
     private int quantity;
