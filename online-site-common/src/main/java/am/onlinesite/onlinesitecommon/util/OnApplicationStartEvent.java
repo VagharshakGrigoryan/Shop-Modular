@@ -2,12 +2,9 @@ package am.onlinesite.onlinesitecommon.util;
 
 
 import am.onlinesite.onlinesitecommon.model.Category;
-import am.onlinesite.onlinesitecommon.model.Product;
 import am.onlinesite.onlinesitecommon.model.User;
 import am.onlinesite.onlinesitecommon.repasitory.CategoryRepository;
-import am.onlinesite.onlinesitecommon.repasitory.ProductRepository;
 import am.onlinesite.onlinesitecommon.repasitory.UserRepository;
-import com.stripe.param.issuing.CardholderUpdateParams;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -25,10 +22,6 @@ public class  OnApplicationStartEvent implements ApplicationListener<Application
     @Override
     public void onApplicationEvent(final ApplicationReadyEvent event) {
         if (userRepository.findByEmail("admin@mail.com").isEmpty()) {
-            Category company = categoryRepository.save(Category.builder()
-                    .name("Itspace")
-                    .type(Category.Type.BOOK)
-                    .build());
             userRepository.save(User.builder()
                     .firstName("admin")
                     .lastName("admin")
@@ -37,6 +30,41 @@ public class  OnApplicationStartEvent implements ApplicationListener<Application
                     .role(User.Role.ADMIN)
                     .username("admin")
                     .build());
+            userRepository.save(User.builder()
+                    .firstName("user")
+                    .lastName("user")
+                    .email("user@mail.com")
+                    .password(passwordEncoder.encode("user"))
+                    .role(User.Role.USER)
+                    .username("user")
+                    .build());
         }
+        if (categoryRepository.findAll().isEmpty()) {
+
+            categoryRepository.save(Category.builder()
+                    .name("Book")
+                    .type(Category.Type.BOOK)
+                    .build());
+            categoryRepository.save(Category.builder()
+                    .name("CLOTHES")
+                    .type(Category.Type.CLOTHES)
+                    .build());
+            categoryRepository.save(Category.builder()
+                    .name("IT")
+                    .type(Category.Type.IT)
+                    .build());
+            categoryRepository.save(Category.builder()
+                    .name("Sport")
+                    .type(Category.Type.SPORT)
+                    .build());
+            categoryRepository.save(Category.builder()
+                    .name("School")
+                    .type(Category.Type.SCHOOL)
+                    .build());
+            categoryRepository.save(Category.builder()
+                    .name("For home")
+                    .type(Category.Type.FOR_HOME)
+                    .build());
+
     }
-}
+}}

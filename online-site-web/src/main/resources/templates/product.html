@@ -157,8 +157,11 @@
                 <hr/>
                 <div class="row">
                     <div class="col-sm-12 col-md-6 col-lg-6">
-                        <a href="javascript:void(0);" class="btn btn-success btn-lg">Add to cart ($129.54)</a>
-                        <br>
+                        <form th:action="@{'/products/shop/' + ${product.id}}"
+                              method="post"  enctype="multipart/form-data">
+                            <button type="submit" class="btn btn-success">Add to
+                                cart</button>
+                        </form>                        <br>
                         <p class="card-text"></p> <a th:href="@{/products/{productId}/edit(productId=${product.id})}"
                                                      class="btn btn-success btn-lg">view details
                     </a>
